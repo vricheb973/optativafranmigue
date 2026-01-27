@@ -50,6 +50,7 @@ public class JwtFilter extends OncePerRequestFilter {
 			}
 			
 			filterChain.doFilter(request, response);
+			
 		} catch (TokenExpiredException e) {
 		    // Token expirado
 		    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
