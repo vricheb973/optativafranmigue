@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.daw.persistence.entities.Estado;
 import com.daw.persistence.entities.Tarea;
+import com.daw.persistence.entities.Usuario;
 import com.daw.persistence.repositories.TareaRepository;
 import com.daw.services.exceptions.TareaException;
 import com.daw.services.exceptions.TareaNotFoundException;
@@ -19,6 +20,9 @@ public class TareaService {
 
 	@Autowired
 	private TareaRepository tareaRepository;
+	
+	@Autowired
+	private UsuarioService usuarioService;
 
 	// findAll
 	public List<Tarea> findAll() {
@@ -49,6 +53,11 @@ public class TareaService {
 		tarea.setId(0);
 		tarea.setEstado(Estado.PENDIENTE);
 		tarea.setFechaCreacion(LocalDate.now());
+		
+		if(tarea.getIdUsuario() == 0) {
+			Usuario u = this.usuarioService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+			tarea.setIdUsuario(u.getId());
+		}
 
 		return this.tareaRepository.save(tarea);
 	}

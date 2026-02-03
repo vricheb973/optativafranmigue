@@ -59,10 +59,7 @@ public class JwtFilter extends OncePerRequestFilter {
 		    // Token inválido por cualquier otro motivo
 		    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		    response.getWriter().write("{\"error\": \"Token inválido\"}");
-		}
-		
-		
-		
+		}		
 		
 	}
 	
