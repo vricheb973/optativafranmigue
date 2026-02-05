@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.daw.persistence.entities.Tarea;
 import com.daw.services.TareaService;
-import com.daw.services.exceptions.TareaException;
-import com.daw.services.exceptions.TareaNotFoundException;
-import com.daw.services.exceptions.TareaSecurityException;
 
 @RestController
 @RequestMapping("/tareas")
@@ -34,55 +31,28 @@ public class TareaController {
 
 	@GetMapping("/{idTarea}")
 	public ResponseEntity<?> findById(@PathVariable int idTarea) {
-		try {
 			return ResponseEntity.ok(this.tareaService.findByIdAndUser(idTarea));
-		} catch (TareaNotFoundException ex) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
-		} catch (TareaSecurityException ex) {
-			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
-		}
 	}
 
 	@PostMapping
 	public ResponseEntity<?> create(@RequestBody Tarea tarea) {
-		try {
 			return ResponseEntity.status(HttpStatus.CREATED).body(this.tareaService.create(tarea));
-		} catch (TareaException ex) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-		}
 	}
 
 	@PutMapping("/{idTarea}")
 	public ResponseEntity<?> update(@PathVariable int idTarea, @RequestBody Tarea tarea) {
-		try {
 			return ResponseEntity.ok(this.tareaService.update(tarea, idTarea));
-		} catch (TareaNotFoundException ex) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
-		} catch (TareaException ex) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-		}
 	}
 
 	@DeleteMapping("/{idTarea}")
 	public ResponseEntity<?> delete(@PathVariable int idTarea) {
-
-		try {
 			this.tareaService.delete(idTarea);
 			return ResponseEntity.ok().build();
-		} catch (TareaNotFoundException ex) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
-		}
 	}
 
 	@PutMapping("/{idTarea}/iniciar")
 	public ResponseEntity<?> iniciarTarea(@PathVariable int idTarea){
-		try {
 			return ResponseEntity.ok(this.tareaService.marcarEnProgreso(idTarea));
-		} catch (TareaNotFoundException ex) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
-		} catch (TareaException ex) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-		}		
 	}
 	
 	@GetMapping("/pendientes")

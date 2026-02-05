@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.daw.services.UsuarioService;
+import com.daw.services.LoginService;
 import com.daw.services.dto.LoginRequest;
 import com.daw.services.dto.LoginResponse;
 import com.daw.services.dto.RefreshDTO;
@@ -18,21 +18,20 @@ import com.daw.services.dto.RefreshDTO;
 public class AuthController {
 	
 	@Autowired
-	private UsuarioService usuarioService;
+	private LoginService loginService;
 
 	@PostMapping("/login")
 	public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
-		return ResponseEntity.ok(this.usuarioService.login(request));
+		return ResponseEntity.ok(this.loginService.login(request));
 	}
 
 	@PostMapping("/register")
 	public ResponseEntity<?> register(@RequestBody LoginRequest request) {
-		return ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION, this.usuarioService.registrar(request)).build();
+		return ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION, this.loginService.registrar(request)).build();
 	}
 
 	@PostMapping("/refresh")
 	public ResponseEntity<?> refresh(@RequestBody RefreshDTO request) {
-		return ResponseEntity.ok(this.usuarioService.refresh(request));
+		return ResponseEntity.ok(this.loginService.refresh(request));
 	}
-
 }

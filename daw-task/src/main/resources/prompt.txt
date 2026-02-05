@@ -1,0 +1,43 @@
+Rol: Actúa como un Arquitecto de Software Senior experto en Angular (versión 18+) y TypeScript.
+Objetivo: Crear la estructura base y los módulos core de una aplicación web (daw-task. Gestión de tareas).
+
+Especificaciones Técnicas:
+Framework: Angular 18+ (Uso estricto de Standalone Components).
+Gestión de Estado: Angular Signals (evita NgRx a menos que sea necesario, prefiere servicios con Signals).
+Estilos: Tailwind CSS.
+Formularios: Reactive Forms con tipado estricto.
+
+1. Interacción con el Backend (API): El backend ya existe (está desarrollado con Spring Boot 3). Lo tienes en la carpeta daw-task. La URL base es http://localhost:8081. Puedes mirar el código del backend pero no lo toques.
+
+2. Gestión de tareas
+Los usuarios podrán:
+Listar las tareas.
+Ver una tarea mediante su ID.
+Crear tareas.
+Modificar el estado de tareas (iniciar y completar).
+
+Los administradores podrán:
+Listar las tareas.
+Ver una tarea mediante su ID.
+Crear tareas.
+Modificar el estado de tareas (iniciar y completar).
+Editar tareas.
+Borrar tareas.
+
+Puedes mirar el TareaController, TareaService y la Entity Tarea para obtener más detalles.
+
+2. Autenticación y JWT (Requisito Crítico):
+Login: El endpoint /auth/login devuelve un JWT.
+Almacenamiento: Guarda el token en localStorage (o sessionStorage).
+Interceptor: Crea un HttpInterceptorFn (funcional) que adjunte el token en el header Authorization: Bearer [TOKEN] en todas las peticiones, excepto en las de auth.
+Guards: Implementa un CanActivateFn para proteger rutas privadas. Si no hay token, redirige a /login. 
+Quiero que veas el backend para que veas los otros endpoints para registrarse y el endpoint del refresh token.
+
+3. Gestión de Errores y Códigos HTTP: Implementa un manejo global de errores (quizás mediante un segundo interceptor o servicio global) que reaccione según el código de estado:
+Los códigos de respuesta que devuelvo, lo verás en el GlobalExceptionHandler, además de en los controladores.
+
+4. Diseño y UI/UX: Quiero un diseño que te parezca a ti bien porque no tengo ni idea.
+Estructura: Layout principal con Sidebar (menú lateral) y Header (barra superior con botón de logout).
+Feedback: Usa componentes tipo "Toast" o "Snackbar" para notificar éxitos y errores al usuario, no uses alert().
+
+Por favor, genera la aplicación en el proyecto recién creado que está en daw-task-frontend. Si necesitas algo más pidemelo.
