@@ -9,7 +9,7 @@ import com.daw.persistence.entities.Tarea;
 
 public interface TareaRepository extends ListCrudRepository<Tarea, Integer> {
 	
-	List<Tarea> findByEstado(Estado estado);	
+	List<Tarea> findByEstadoAndUsuarioUsername(Estado estado, String username);	
 	List<Tarea> findByUsuarioUsername(String username);
 
 

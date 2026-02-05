@@ -110,16 +110,16 @@ public class TareaService {
 	
 //	Obtener las tareas pendientes.
 	public List<Tarea> pendientes() {
-		return this.tareaRepository.findByEstado(Estado.PENDIENTE);
+		return this.tareaRepository.findByEstadoAndUsuarioUsername(Estado.PENDIENTE, SecurityContextHolder.getContext().getAuthentication().getName());
 	}
 	
 //	Obtener las tareas en progreso.
 	public List<Tarea> enProgreso() {
-		return this.tareaRepository.findByEstado(Estado.EN_PROGRESO);
+		return this.tareaRepository.findByEstadoAndUsuarioUsername(Estado.EN_PROGRESO, SecurityContextHolder.getContext().getAuthentication().getName());
 	}
 //	Obtener las tareas completadas.
 	public List<Tarea> completadas() {
-		return this.tareaRepository.findByEstado(Estado.COMPLETADA);
+		return this.tareaRepository.findByEstadoAndUsuarioUsername(Estado.COMPLETADA, SecurityContextHolder.getContext().getAuthentication().getName());
 	}
 
 	//Métodos securizados
