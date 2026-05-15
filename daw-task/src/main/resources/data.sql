@@ -1,5 +1,4 @@
 -- 2. Inserción de Usuarios (Todos con password: 1234)
--- Hash BCrypt de "1234": $2a$10$clYvYI6fR/U0J7.O1l7Kue.mK6/0L6B.vJ.vI8BWBW9x1B.N8.yW
 INSERT INTO usuario (username, password, email, rol) VALUES
 ('admin01', '$2a$10$uAX0Uz1sETSDQlsI3E.G8evSBvWOt04jtG3cXxhnkvN5Z4ljp6Tfy', 'admin@empresa.com', 'ADMIN'),
 ('juan85', '$2a$10$uAX0Uz1sETSDQlsI3E.G8evSBvWOt04jtG3cXxhnkvN5Z4ljp6Tfy', 'juan@correo.com', 'USER'),

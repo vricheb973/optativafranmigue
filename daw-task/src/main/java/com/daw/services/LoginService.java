@@ -7,7 +7,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import com.daw.persistence.repositories.UsuarioRepository;
 import com.daw.services.dto.LoginRequest;
 import com.daw.services.dto.LoginResponse;
 import com.daw.services.dto.RefreshDTO;
